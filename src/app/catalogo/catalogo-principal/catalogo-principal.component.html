@@ -1,1 +1,13 @@
-<p>catalogo-principal works!</p>
+<div class="row">
+  <div class="col-12">
+    <h1>Catálogo Principal</h1>
+    <p>Bienvenido al catálogo principal de nuestra aplicación.</p>
+  </div>
+  <div class="col-12" *ngFor="let producto of productos">
+    <!-- Aquí puedes usar un componente para mostrar cada item del catálogo -->
+    <!-- Por ejemplo, un componente llamado 'app-catalogo-item' -->
+    <!-- Puedes pasarle el item como input si es necesario -->
+    <!-- <app-catalogo-item [item]="item"></app-catalogo-item> -->
+    <app-catalogo-item [producto]="producto"></app-catalogo-item>
+  </div>
+</div>
