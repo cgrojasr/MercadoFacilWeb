@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ProductoService } from '../../services/producto/producto.service';
 import { ProductoCatalogoModel } from '../../models/producto-model';
-import { CarritoItemComponent } from "../../carrito/carrito-item/carrito-item.component";
 import { CatalogoItemComponent } from "../catalogo-item/catalogo-item.component";
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../shared/shared.module';
 
 @Component({
   selector: 'app-catalogo-principal',
