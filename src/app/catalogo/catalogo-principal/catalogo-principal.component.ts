@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../../services/producto/producto.service';
 import { ProductoCatalogoModel } from '../../models/producto-model';
 import { CatalogoItemComponent } from "../catalogo-item/catalogo-item.component";
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../shared/shared.module';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-catalogo-principal',
@@ -12,17 +12,17 @@ import { SharedModule } from '../../shared/shared.module';
   templateUrl: './catalogo-principal.component.html',
   styleUrl: './catalogo-principal.component.css'
 })
-export class CatalogoPrincipalComponent  {
+export class CatalogoPrincipalComponent implements OnInit {
   productos: ProductoCatalogoModel[] = [];
   
   constructor(
     private productoService: ProductoService
   ) {}
 
-  ngOnInit() {
+  ngOnInit() : void {
     this.productoService.getProductosCatalogo().subscribe(
-      (data) => {
-        this.productos = data;
+      result => {
+        this.productos = result;
         console.log(this.productos);
       });
   }

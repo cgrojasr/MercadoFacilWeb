@@ -2,17 +2,20 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ProductoCarritoModel, ProductoCatalogoModel } from '../../models/producto-model';
 import { SharedModule } from '../../shared/shared.module';
 import { CookieService } from 'ngx-cookie-service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-catalogo-item',
-  imports: [SharedModule],
+  imports: [FormsModule],
   templateUrl: './catalogo-item.component.html',
   styleUrl: './catalogo-item.component.css'
 })
 export class CatalogoItemComponent implements OnInit {
-  @Input() producto_catalogo: ProductoCatalogoModel = {
-    id: 0, // Identificador único del producto
+  @Input() productoCatalogo: ProductoCatalogoModel = {
+    idProducto: 0, // Identificador único del producto
+    sku: '', // SKU del producto
     nombre: '', // Nombre del producto
+    marca: '', // Marca del producto
   }; // Identificador único del producto
 
   producto_carrito: ProductoCarritoModel = {
@@ -21,12 +24,14 @@ export class CatalogoItemComponent implements OnInit {
     cantidad: 0 // Cantidad del producto en el carrito
   };
 
-  constructor(private cookieService: CookieService) {}
+  constructor(
+    private cookieService: CookieService
+  ) {}
 
   ngOnInit() {
     // Inicialización del componente 
-    this.producto_carrito.id = this.producto_catalogo.id;
-    this.producto_carrito.nombre = this.producto_catalogo.nombre;
+    this.producto_carrito.id = this.productoCatalogo.idProducto;
+    this.producto_carrito.nombre = this.productoCatalogo.nombre;
     this.producto_carrito.cantidad = 0; // Inicializar la cantidad a 1
   }
 

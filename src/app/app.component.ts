@@ -5,7 +5,12 @@ import { FooterComponent } from './shared/footer/footer.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, RouterModule],
+  imports: [
+    RouterOutlet, 
+    HeaderComponent, 
+    FooterComponent, 
+    RouterModule
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
