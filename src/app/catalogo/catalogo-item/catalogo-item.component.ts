@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductoCarritoModel, ProductoCatalogoModel } from '../../models/producto-model';
-import { SharedModule } from '../../shared/shared.module';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
+import { TruncatePipe } from "../../shared/pipes/truncate/truncate.pipe";
 
 @Component({
   selector: 'app-catalogo-item',
-  imports: [FormsModule],
+  imports: [FormsModule, TruncatePipe],
   templateUrl: './catalogo-item.component.html',
   styleUrl: './catalogo-item.component.css'
 })
