@@ -3,6 +3,7 @@ import { ProductoCarritoModel, ProductoCatalogoModel } from '../../models/produc
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
 import { TruncatePipe } from "../../shared/pipes/truncate/truncate.pipe";
+import { CarritoStateService } from '../../services/carrito-state/carrito-state.service';
 
 @Component({
   selector: 'app-catalogo-item',
@@ -24,28 +25,37 @@ export class CatalogoItemComponent implements OnInit {
     cantidad: 0 // Cantidad del producto en el carrito
   };
 
+  carrito: ProductoCarritoModel[] = [];
   constructor(
-    private cookieService: CookieService
+    private cookieService: CookieService,
+  private carritoState: CarritoStateService
   ) {}
 
   ngOnInit() {
+    // Verificar si el producto ya está en el carrito
+    this.carrito = this.cookieService.get('carrito') 
+      ? JSON.parse(this.cookieService.get('carrito')) 
+      : [];
+    const productoExistente = this.carrito.find(item => item.id === this.productoCatalogo.idProducto);
+
     // Inicialización del componente 
     this.producto_carrito.id = this.productoCatalogo.idProducto;
     this.producto_carrito.nombre = this.productoCatalogo.nombre;
-    this.producto_carrito.cantidad = 0; // Inicializar la cantidad a 1
+    if (productoExistente) {
+      this.producto_carrito.cantidad = productoExistente.cantidad; // Si ya existe, usar los datos del carrito
+    }
   }
 
   btnAgregarAlCarrito():void {
     // Lógica para agregar el producto al carrito de compras
-    let carrito: ProductoCarritoModel[] = [];
+    //let carrito: ProductoCarritoModel[] = [];
 
-    carrito = this.cookieService.get('carrito') 
+    this.carrito = this.cookieService.get('carrito') 
       ? JSON.parse(this.cookieService.get('carrito')) 
       : [];
-    carrito = carrito.filter((item) => item.id !== this.producto_carrito.id); // Eliminar el producto si ya existe en el carrito
-    carrito.push(this.producto_carrito);
-    this.cookieService.set('carrito', JSON.stringify(carrito));
-
-    console.log(carrito);
+    this.carrito = this.carrito.filter((item) => item.id !== this.producto_carrito.id); // Eliminar el producto si ya existe en el carrito
+    this.carrito.push(this.producto_carrito);
+    this.cookieService.set('carrito', JSON.stringify(this.carrito));
+    this.carritoState.setCantidadCarrito(this.carrito.length);
   }
 }

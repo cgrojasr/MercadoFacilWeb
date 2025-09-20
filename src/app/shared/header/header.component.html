@@ -1,19 +1,22 @@
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Mercado Fácil</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Catalogo</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/carrito']">Carrito</a>
-                </li>
-                <!-- <li class="nav-item dropdown">
+<nav class="navbar navbar-expand-lg bg-primary sticky-top" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Mercado Fácil</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Catalogo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/carrito']">Carrito</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/demo']">Demo</a>
+        </li>
+        <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown
             </a>
@@ -24,14 +27,25 @@
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li> -->
-                <!-- <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
           </li> -->
-            </ul>
-            <!-- <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Ingresa producto" aria-label="Search">
-          <button class="btn btn-outline" type="submit">Buscar</button>
-        </form> -->
-        </div>
+      </ul>
+
+      <button type="button" class="btn btn-primary position-relative" data-bs-toggle="modal" data-bs-target="#carritoModal"
+        title="Carrito de compras">
+        <i class="bi bi-cart"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          {{ cantidad_carrito }}
+          <span class="visually-hidden">unread messages</span>
+        </span>
+      </button>
+      <app-modal-carrito></app-modal-carrito>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal"
+        title="btnLogin">
+        <i class="bi bi-person-circle"></i>
+      </button>
+      <app-modal-login></app-modal-login>
     </div>
+  </div>
 </nav>

@@ -5,6 +5,8 @@ import { CatalogoItemComponent } from "../catalogo-item/catalogo-item.component"
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { SharedModule } from '../../shared/shared.module';
+import { ProductoCategoriaModel } from '../../models/producto-categoria-model';
+import { ProductoCategoriaService } from '../../services/producto-categoria/producto-categoria.service';
 
 @Component({
   selector: 'app-catalogo-principal',
@@ -15,16 +17,42 @@ import { SharedModule } from '../../shared/shared.module';
 })
 export class CatalogoPrincipalComponent implements OnInit {
   productos: ProductoCatalogoModel[] = [];
+  categorias: ProductoCategoriaModel[] = []; // Cambiado a 'any' para evitar problemas de tipo
+  nombreBuscar: string = '';
   
   constructor(
-    private productoService: ProductoService
+    private productoService: ProductoService,
+    private productoCategoriaService: ProductoCategoriaService,
   ) {}
 
   ngOnInit() : void {
     this.productoService.getProductosCatalogo().subscribe(
       result => {
         this.productos = result;
-        console.log(this.productos);
+      });
+
+    this.productoCategoriaService.ListarCategorias().subscribe(
+      result => {
+        this.categorias = result;
+      } 
+    );
+  }
+
+  onSelectedCategoria(categoriaId: number) {
+    console.log('Categoría seleccionada:', categoriaId);
+    // Aquí puedes implementar la lógica para filtrar los productos por categoría
+    this.productoService.getProductosCatalogo(categoriaId).subscribe(
+      result => {
+        this.productos = result;
+      });
+  }
+
+  onClickBucar(nombreProducto: string) {
+    console.log('Buscar productos');
+    // Aquí puedes implementar la lógica para buscar productos
+    this.productoService.getProductosCatalogo(undefined, nombreProducto).subscribe(
+      result => {
+        this.productos = result;
       });
   }
 }

@@ -19,9 +19,10 @@ export class ProductoService {
   ) { }
 
   
-  getProductosCatalogo(): Observable<ProductoCatalogoModel[]> {
+  getProductosCatalogo(idProductoCategoria?:number, nombreProducto?: string): Observable<ProductoCatalogoModel[]> {
     //return of(this.productos)
     // console.log('Llamando al servicio de productos');
-    return this.http.get<ProductoCatalogoModel[]>('http://localhost:5171/api/Producto/GetProductosCatalogo');
+    console.log(idProductoCategoria);
+    return this.http.get<ProductoCatalogoModel[]>(`http://localhost:5171/api/Producto/GetProductosCatalogo?${idProductoCategoria ? 'idCategoria='+idProductoCategoria : ''}${nombreProducto ? '&nombre='+nombreProducto : ''}`);
   }
 }

@@ -6,13 +6,15 @@
 </div>
 <div class="row">
   <div class="col-6">
-    <div class="input-group mb-3">
+    <form #form="ngForm">
+      <div class="input-group mb-3">
       <input type="text" class="form-control" placeholder="Buscar producto" aria-label="Buscar producto"
-        aria-describedby="button-addon2">
-      <button title="btnBuscar" class="btn btn-primary" type="button" id="button-addon2">
+        aria-describedby="button-addon2" [(ngModel)]="nombreBuscar" name="nombreBuscar">
+      <button title="btnBuscar" class="btn btn-primary" type="button" id="button-addon2" (click)="onClickBucar(nombreBuscar)">
         <i class="bi bi-search"></i>
       </button>
     </div>
+    </form>
   </div>
   <div class="col-2 mb-2">
     <div class="dropdown">
@@ -20,9 +22,9 @@
         Categorías
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li *ngFor="let categoria of categorias">
+          <a class="dropdown-item" href="#" (click)="onSelectedCategoria(categoria.idProductoCategoria)" >{{categoria.nombre}}</a>
+        </li>
       </ul>
     </div>
   </div>
