@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
 import { CarritoPrincipalComponent } from './carrito/carrito-principal/carrito-principal.component';
 import { CatalogoPrincipalComponent } from './catalogo/catalogo-principal/catalogo-principal.component';
-import { DemoComponent } from './demo/demo.component';
+import { CotizacionPrincipalComponent } from './cotizacion/cotizacion-principal/cotizacion-principal.component';
+// import { DemoComponent } from './demo/demo.component';
 
 export const routes: Routes = [
     {
@@ -15,8 +16,13 @@ export const routes: Routes = [
         title: 'MercadoFacil - Carrito de compras' // Título de la página
     },
     {
-        path: 'demo', // Ruta raíz
-        component: DemoComponent, // Componente que se mostrará en la ruta raíz
-        title: 'MercadoFacil - Demo' // Título de la página
-    },
+        path: 'cotizacion', // Ruta demo
+        component: CotizacionPrincipalComponent, // Componente que se mostrará en la ruta demo
+        title: 'MercadoFacil - Cotizaciones' // Título de la página
+    }
+    // {
+    //     path: 'demo', // Ruta raíz
+    //     component: DemoComponent, // Componente que se mostrará en la ruta raíz
+    //     title: 'MercadoFacil - Demo' // Título de la página
+    // },
 ];

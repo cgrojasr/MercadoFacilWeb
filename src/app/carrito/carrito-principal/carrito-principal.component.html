@@ -3,6 +3,11 @@
     <h1>Carrito Principal</h1>
   </div>
 </div>
-<div class="row mb-2" *ngFor="let producto of carrito">
+<div class="row mb-4" *ngFor="let producto of carrito">
     <app-carrito-item [producto]="producto" (eliminarProductoEvent)="eliminarProducto($event)"></app-carrito-item>
+</div>
+<div class="row mb-4">
+  <div class="col-4 offset-8">
+    <button name="btnCotizar" type="button" class="btn btn-primary" (click)="cotizacionOnClick()">Cotizar</button>
+  </div>
 </div>

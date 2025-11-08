@@ -3,6 +3,7 @@ import { ProductoCarritoModel } from '../../models/producto-model';
 import { CommonModule } from '@angular/common';
 import { CarritoItemComponent } from "../carrito-item/carrito-item.component";
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrito-principal',
@@ -33,7 +34,8 @@ export class CarritoPrincipalComponent implements OnInit {
    *
    */
   constructor(
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router
   ) {
     //  cookieService.set('carrito', JSON.stringify(this.carrito));
   }
@@ -48,5 +50,10 @@ export class CarritoPrincipalComponent implements OnInit {
   //   this.productosCarrito = this.productosCarrito.filter(producto => producto.id !== idProducto);
   console.log('Eliminando producto con ID:', idProducto);
   this.carrito = JSON.parse(this.cookieService.get('carrito') || '[]');
+  }
+
+  cotizacionOnClick(): void {
+    // Navegar a la ruta de cotización usando el Router de Angular
+    this.router.navigate(['/cotizacion']);
   }
 }
