@@ -41,6 +41,7 @@ export class CatalogoItemComponent implements OnInit {
     // Inicialización del componente 
     this.producto_carrito.id = this.productoCatalogo.idProducto;
     this.producto_carrito.nombre = this.productoCatalogo.nombre;
+    this.producto_carrito.imagen = this.productoCatalogo.imagen;
     if (productoExistente) {
       this.producto_carrito.cantidad = productoExistente.cantidad; // Si ya existe, usar los datos del carrito
     }

@@ -4,12 +4,14 @@ import { ProductoCarritoModel } from '../../models/producto-model';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { CarritoStateService } from '../../services/carrito-state/carrito-state.service';
+import { CarritoItemComponent } from "../../carrito/carrito-item/carrito-item.component";
 
 @Component({
   selector: 'app-modal-carrito',
   imports: [
-    CommonModule
-  ],
+    CommonModule,
+    CarritoItemComponent
+],
   templateUrl: './modal-carrito.component.html',
   styleUrl: './modal-carrito.component.css'
 })

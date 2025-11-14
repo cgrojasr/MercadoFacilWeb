@@ -7,11 +7,8 @@
       </div>
       <div class="modal-body">
         <div *ngIf="carrito && carrito.length > 0; else carritoVacio">
-          <div *ngFor="let item of carrito" class="card mb-3">
-            <div class="card-body">
-              <h5 class="card-title">{{ item.nombre }}</h5>
-              <p class="card-text">Cantidad: {{ item.cantidad }}</p>
-            </div>
+          <div class="row mb-4" *ngFor="let producto of carrito">
+              <app-carrito-item [producto]="producto"></app-carrito-item>
           </div>
         </div>
         <ng-template #carritoVacio>
